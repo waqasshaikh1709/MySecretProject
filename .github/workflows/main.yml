@@ -1,0 +1,21 @@
+on:
+  push:
+    branches: [ "master" ]
+
+jobs:
+    deploy_job:
+    runs-on: ubuntu-latest
+    name: deploy
+    steps:
+        - name: Checkout
+        uses: actions/checkout@v2
+        - name: Deploy file
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+        with:
+            username: gauser_storeapp
+            server: 18.133.143.127
+            port: 22
+            local_path: .
+            remote_path: 'public_html/'
+            sftp_only: true
+            password: Administrator@123456789
